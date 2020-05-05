@@ -1,0 +1,1 @@
+// to use this file, rename it to new_transactions_log.php 

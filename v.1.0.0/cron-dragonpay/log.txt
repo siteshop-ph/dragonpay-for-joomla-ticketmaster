@@ -1,0 +1,1 @@
+// to use log file rename this file to log.php

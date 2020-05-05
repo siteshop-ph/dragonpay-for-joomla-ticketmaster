@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.0.0" type="plugin" group="rdmedia" method="upgrade">
+    <name>Dragonpay</name>
+    <author>► Serge Frankin SiteShop.ph ◄ Netpublica.com Corp.</author>
+    <creationDate>September 2014</creationDate>
+    <copyright>GPL-3.0</copyright>
+    <authorEmail>none</authorEmail>
+    <authorUrl>SiteShop.ph</authorUrl>
+    <version>1.0.0</version>
+    <description><![CDATA[
+    <br/><br/>Dragonpay Plugin to receive money from your customers.<br/><br/>
+    <a target="_blank" href="http://www.dragonpay.ph/developers">Read More: Dragonpay</a><br/>
+       
+    ]]></description>
+
+
+
+
+		<files>
+			<filename plugin="rdmdragonpay">rdmdragonpay.php</filename>
+                        <filename plugin="rdmdragonpay">class.php</filename>
+			<folder>rdmedia_dragonpay</folder>
+                        <folder>lib</folder>   
+                        <folder>sql</folder>                  
+		</files>
+
+
+
+
+
+
+	<install> <!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+
+
+
+	<uninstall> <!-- Runs on uninstall -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+
+	
+
+
+
+    
+	<config>
+		<fields name="params">
+		
+			<fieldset name="basic">
+
+
+
+				<field name="merchantid" type="text"
+					default=""
+					size="40"
+					description="Enter your Merchant ID for Dragonpay."
+					label="Dragonpay Merchant ID"
+				/>				
+				
+				<field name="dragonpay_api_password" type="password"
+					default=""
+					size="40"
+					description="Enter your Dragonpay API Password."
+					label="Dragonpay API Password"
+				/>	
+				
+				<field name="layout" type="list"
+					default="1"
+					description="Select 1. if you are running Joomla 3 OR if you have Twitter Bootstrap enabled in the Ticketmaster Configuration  -  Select 2. for Other case"
+					label="Plugin Layout"
+				>
+					<option value="1">1.  : You have Joomla 3 OR Twitter Bootstrap</option>
+					<option value="0">0.  : Other Case</option>
+				</field>					
+				
+									
+
+				<field name="ccy" type="list"
+					default="PHP"
+					description="Choose the Dragonpay Currency"
+					label="Choose Currency"
+				>
+					<option value="PHP">Philippine Peso</option>
+					<option value="USD">US Dollar</option>
+				</field>
+
+				<field name="sandbox_on" type="list"
+					default="1"
+					description="Turn on to use Dragonpay test account."
+					label="Dragonpay Test Mode"
+				>
+					<option value="0">JOFF</option>
+					<option value="1">JON</option>
+				</field>					
+
+
+                             
+                               <field name="debug_on" type="list"
+					default="0"
+					description="Turn on to use the plugin in debug mode"
+					label="Plugin debug/log Mode"
+				>
+					<option value="0">JOFF</option>
+					<option value="1">JON</option>
+	               </field>														
+
+
+                        
+
+
+
+                               <field name="notification_parser" type="list"
+					default="1"
+					description="Only set this to NO when you want to test CRON_GetMerchantTxns.php to check that transactions and order status update in Magento can also be done from the cron job."
+					label="Dragonpay Notification Parser (DNP)"
+				>
+					<option value="0">JOFF</option>
+					<option value="1">JON</option>
+				</field>
+
+
+
+
+
+
+				<field name="shopping_cart_id" type="text"
+					default=""
+					size="40"
+					description="Enter your Shopping Cart Id"
+					label="Shopping Cart ID (optional)"
+				/>	                      
+
+
+
+
+
+
+      
+							
+				
+			</fieldset>
+			
+			<fieldset name="advanced">
+				
+				
+				
+				<field name="mail_on_notification" type="list"
+					default="0"
+					description="Turn this setting on when you want to receive an email notification for SUCCESS, CHARGEBACK or REFUND, Transactions."
+					label="Admin notification by email"
+				>
+					<option value="0">JOFF</option>
+					<option value="1">JON</option>
+				</field>
+				
+				<field name="notify_email" type="text"
+					default=""
+					size="40"
+					description="Enter the admin email address"
+					label="Email Address for admin notifications"
+				/>
+				
+				<field name="notify_email_msg" type="text"
+					default="1"
+					size="40"
+					description="message #ID (EID) from Ticketmaster message center, that message will be send to customer."
+					label="Message ID# for Completed Order to send to customer"
+				/>	
+
+
+			
+								
+			</fieldset>
+			
+		</fields>
+	</config>
+
+</extension>
